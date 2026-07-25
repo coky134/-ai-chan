@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap');
 
         body {
-            background-color: #ffe0e6;
+            background-color: #e0f4ff; /* Biru pastel untuk background */
             font-family: 'Quicksand', sans-serif;
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
-            color: #8b1e41;
+            color: #1c3d5a; /* Biru dongker untuk teks agar mudah dibaca */
             text-align: center;
         }
 
@@ -70,32 +70,32 @@
             height: 25px;
             width: 25px;
             border-radius: 50%;
-            background: #d6336c;
+            background: #5a9bd4; /* Biru kuat untuk tombol slider */
             cursor: pointer;
             margin-top: -10px;
-            box-shadow: 0 0 10px rgba(214, 51, 108, 0.5);
+            box-shadow: 0 0 10px rgba(90, 155, 212, 0.5);
         }
 
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 8px;
             cursor: pointer;
-            background: #ffb3c6;
+            background: #b3d4ff; /* Biru medium untuk track slider */
             border-radius: 5px;
         }
 
         .percentage {
             font-size: 28px;
             font-weight: bold;
-            color: #c9184a;
+            color: #185ac9; /* Biru untuk persentase */
             margin: 15px 0;
         }
 
         /* Button */
         button {
-            background-color: #ffb3c6;
+            background-color: #b3d4ff; /* Biru medium tombol */
             border: none;
-            color: #8b1e41;
+            color: #1c3d5a;
             padding: 10px 30px;
             text-align: center;
             font-size: 16px;
@@ -110,7 +110,7 @@
         }
 
         button:hover {
-            background-color: #ff8fab;
+            background-color: #8faeff; /* Biru hover */
         }
 
         .btn-wa {
@@ -142,12 +142,12 @@
         /* --- CLOCK STYLES --- */
         .clock-container {
             margin: 10px auto 25px auto;
-            color: #729bce; /* Biru soft persis di referensi gambar */
+            color: #729bce; /* Biru soft jam dari gambar referensi */
         }
 
         #time-display {
             font-size: 70px;
-            font-weight: 900; /* Extra bold */
+            font-weight: 900;
             line-height: 1;
             margin-bottom: 5px;
             letter-spacing: 1px;
@@ -215,8 +215,8 @@
             font-size: 11px;
             position: absolute;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #c9184a;
-            border: 1px solid #ffb3c6;
+            color: #185ac9; /* Teks gelembung biru */
+            border: 1px solid #b3d4ff; /* Border gelembung biru */
             z-index: 2;
             width: max-content;
             text-align: center;
@@ -231,7 +231,7 @@
 </head>
 <body>
 
-    <!-- Wadah untuk YouTube Audio, diubah ukurannya agar tidak diblokir browser -->
+    <!-- Wadah untuk YouTube Audio -->
     <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
 
     <div class="container">
@@ -278,18 +278,19 @@
             </div>
 
             <div class="heart-collage-container">
-                <img class="c-img c-t-l" src="https://placehold.co/100x100/ffb3c6/ffffff?text=Foto+1" alt="Kenangan 1">
-                <img class="c-img c-t-m-l" src="https://placehold.co/150x150/ffb3c6/ffffff?text=Foto+2" alt="Kenangan 2">
-                <img class="c-img c-t-m-r" src="https://placehold.co/150x150/ffb3c6/ffffff?text=Foto+3" alt="Kenangan 3">
-                <img class="c-img c-t-r" src="https://placehold.co/100x100/ffb3c6/ffffff?text=Foto+4" alt="Kenangan 4">
+                <!-- URL placeholder juga sudah diubah senada ke warna biru -->
+                <img class="c-img c-t-l" src="https://placehold.co/100x100/b3d4ff/1c3d5a?text=Foto+1" alt="Kenangan 1">
+                <img class="c-img c-t-m-l" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+2" alt="Kenangan 2">
+                <img class="c-img c-t-m-r" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+3" alt="Kenangan 3">
+                <img class="c-img c-t-r" src="https://placehold.co/100x100/b3d4ff/1c3d5a?text=Foto+4" alt="Kenangan 4">
                 
-                <img class="c-img c-m-l" src="https://placehold.co/120x150/ffb3c6/ffffff?text=Foto+5" alt="Kenangan 5">
-                <img class="c-img c-center" src="https://placehold.co/300x400/ffb3c6/ffffff?text=FOTO+UTAMA" alt="Kenangan Utama">
-                <img class="c-img c-m-r" src="https://placehold.co/120x150/ffb3c6/ffffff?text=Foto+6" alt="Kenangan 6">
+                <img class="c-img c-m-l" src="https://placehold.co/120x150/b3d4ff/1c3d5a?text=Foto+5" alt="Kenangan 5">
+                <img class="c-img c-center" src="https://placehold.co/300x400/b3d4ff/1c3d5a?text=FOTO+UTAMA" alt="Kenangan Utama">
+                <img class="c-img c-m-r" src="https://placehold.co/120x150/b3d4ff/1c3d5a?text=Foto+6" alt="Kenangan 6">
                 
-                <img class="c-img c-b-l" src="https://placehold.co/120x120/ffb3c6/ffffff?text=Foto+7" alt="Kenangan 7">
-                <img class="c-img c-b-r" src="https://placehold.co/120x120/ffb3c6/ffffff?text=Foto+8" alt="Kenangan 8">
-                <img class="c-img c-b-m" src="https://placehold.co/150x150/ffb3c6/ffffff?text=Foto+9" alt="Kenangan 9">
+                <img class="c-img c-b-l" src="https://placehold.co/120x120/b3d4ff/1c3d5a?text=Foto+7" alt="Kenangan 7">
+                <img class="c-img c-b-r" src="https://placehold.co/120x120/b3d4ff/1c3d5a?text=Foto+8" alt="Kenangan 8">
+                <img class="c-img c-b-m" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+9" alt="Kenangan 9">
             </div>
 
             <button onclick="nextScreen(5)">Ada satu lagi buat kamu &rarr;</button>
@@ -310,7 +311,8 @@
             <p style="font-size: 14px; margin-bottom: 5px;">Kasih tau aku kalau kamu udah maafin aku ya 👇</p>
             <button class="btn-wa" onclick="kirimKeWA()">Kirim ke WhatsApp</button>
             <br>
-            <button onclick="location.reload()" style="background: transparent; color: #d6336c; box-shadow: none; font-size: 14px; text-decoration: underline;">Ulangi dari awal</button>
+            <!-- Tombol ulangi diwarnai biru -->
+            <button onclick="location.reload()" style="background: transparent; color: #5a9bd4; box-shadow: none; font-size: 14px; text-decoration: underline;">Ulangi dari awal</button>
         </div>
     </div>
 
@@ -323,14 +325,14 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('ytplayer', {
-                height: '1',  // Disesuaikan agar iframe diakui browser
+                height: '1',
                 width: '1',
                 videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
                 playerVars: {
                     'autoplay': 0,
                     'controls': 0,
                     'disablekb': 1,
-                    'playsinline': 1, // Penting agar video bisa berputar di background pada iOS/Mobile
+                    'playsinline': 1, 
                     'loop': 1,
                     'playlist': 'f5-IY_Ja1RM' 
                 },
@@ -341,7 +343,6 @@
         }
 
         function onPlayerReady(event) {
-            // Trik jitu: Lagu akan diputar segera setelah dia menyentuh layar pertama kali (Tap dimanapun)
             document.body.addEventListener('touchstart', playMusicOnce, { once: true });
             document.body.addEventListener('mousedown', playMusicOnce, { once: true });
         }
@@ -358,14 +359,12 @@
         function updateClock() {
             const now = new Date();
             
-            // Format Jam (HH:MM)
             let hours = now.getHours();
             let minutes = now.getMinutes();
             hours = hours < 10 ? '0' + hours : hours;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             document.getElementById('time-display').textContent = hours + ':' + minutes;
 
-            // Format Tanggal (English style seperti gambar referensi)
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             
@@ -377,9 +376,8 @@
             document.getElementById('date-display').textContent = `${dayName}, ${day} ${monthName} ${year}`;
         }
         
-        // Update jam setiap 1 detik
         setInterval(updateClock, 1000);
-        updateClock(); // Panggil langsung agar tidak kosong di awal
+        updateClock(); 
 
         // Logic Web Interaktif Slider & Layar
         const slider = document.getElementById('forgiveSlider');
@@ -407,13 +405,11 @@
             }
         });
 
-        // Fungsi navigasi antar layar
         function nextScreen(screenNumber) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen' + screenNumber).classList.add('active');
         }
 
-        // Fungsi Kirim ke WA
         function kirimKeWA() {
             const nomorWA = "6287836023594"; 
             const pesan = "Hai Mas, あいちゃん🐥 udah terima kado sama bunganya. Aku udah maafin kamu 100% kok! 💖💐";
