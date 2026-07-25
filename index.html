@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maafin Aku Ya?</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap');
 
         body {
             background-color: #ffe0e6;
@@ -139,6 +139,25 @@
             transform: scale(1.1) rotate(5deg);
         }
 
+        /* --- CLOCK STYLES --- */
+        .clock-container {
+            margin: 10px auto 25px auto;
+            color: #729bce; /* Biru soft persis di referensi gambar */
+        }
+
+        #time-display {
+            font-size: 70px;
+            font-weight: 900; /* Extra bold */
+            line-height: 1;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        #date-display {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
         /* STYLES KOLASE HATI */
         .heart-collage-container {
             position: relative;
@@ -212,8 +231,8 @@
 </head>
 <body>
 
-    <!-- Wadah tersembunyi untuk YouTube Audio -->
-    <div id="ytplayer" style="position: absolute; top: -9999px; left: -9999px;"></div>
+    <!-- Wadah untuk YouTube Audio, diubah ukurannya agar tidak diblokir browser -->
+    <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
 
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
@@ -230,8 +249,7 @@
 
         <!-- Screen 2: Berhasil Maafin -->
         <div id="screen2" class="screen">
-            <div class="emoji-large">😸</div>
-            <h1>あいちゃん😘🐥</h1>
+            <div class="emoji-large">🥰</div>
             <h1>Hai あいちゃん🥰 Terimakasih yaa sudah Buka Blokirnya😘</h1>
             <p>Terimakasih yah sayang kuuu😘😘🐥</p>
             <button onclick="nextScreen(3)">Lanjut &rarr;</button>
@@ -239,7 +257,7 @@
 
         <!-- Screen 3: Kotak Hadiah -->
         <div id="screen3" class="screen">
-            <h1>愛ちゃん💖 lulus tes kesabaran!</h1>
+            <h1>Karena 愛ちゃん💖 Udah Buka Blokir mas, Mas ada sesuatu buat aichan🐥</h1>
             <p>Makasih udah sabar ngadepin aku. Pilih satu kejutan buat kamu:</p>
             <div class="gifts">
                 <div class="gift" onclick="nextScreen(4)">🎁</div>
@@ -248,14 +266,18 @@
             </div>
         </div>
 
-        <!-- Screen 4: KOLASE FOTO HATI -->
+        <!-- Screen 4: KOLASE FOTO HATI + JAM REALTIME -->
         <div id="screen4" class="screen">
             <h1>Kenangan Kita 💕</h1>
-            <p style="font-size: 14px; margin-bottom: 0;">Yeyyyy Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini</p>
-            <p style="font-size: 14px; margin-bottom: 0;">Walau kadang ngeselin, tapi kan banyak manisnya...</p>
-            
+            <p style="font-size: 14px; margin-bottom: 20px;">Hai sayang Kuu, Ini adalah kenangan kita yang sudah Kita Buat selama Ini, Masih banyak kenangan kita lagi yang belum ditampilkan, Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini, Mas Minta maaf jika 2 bulan Ini mas banyak melakukan kesalahan sama aichan, Bikin aichan cemburu, bikin aichan kesel, sampe Blokir mas, mas Minta maaf yah sayang😘, Mas Harap Bisa terus berlanjut sampai Kita menikah nanti😘 Dan teruss membuat kenangan yang berharga di masa depan nanti, love You Moree sayang Kuuu💐.</p>
+           
+            <!-- JAM & TANGGAL REALTIME -->
+            <div class="clock-container">
+                <div id="time-display">00:00</div>
+                <div id="date-display">Day, 00 Month 0000</div>
+            </div>
+
             <div class="heart-collage-container">
-                <!-- Ganti link 'src' dengan link foto-foto asli kalian berdua ya -->
                 <img class="c-img c-t-l" src="https://placehold.co/100x100/ffb3c6/ffffff?text=Foto+1" alt="Kenangan 1">
                 <img class="c-img c-t-m-l" src="https://placehold.co/150x150/ffb3c6/ffffff?text=Foto+2" alt="Kenangan 2">
                 <img class="c-img c-t-m-r" src="https://placehold.co/150x150/ffb3c6/ffffff?text=Foto+3" alt="Kenangan 3">
@@ -301,20 +323,65 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('ytplayer', {
-                height: '0',
-                width: '0',
+                height: '1',  // Disesuaikan agar iframe diakui browser
+                width: '1',
                 videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
                 playerVars: {
                     'autoplay': 0,
                     'controls': 0,
                     'disablekb': 1,
+                    'playsinline': 1, // Penting agar video bisa berputar di background pada iOS/Mobile
                     'loop': 1,
-                    'playlist': 'f5-IY_Ja1RM' // Playlist harus diisi ID yang sama agar bisa loop
+                    'playlist': 'f5-IY_Ja1RM' 
+                },
+                events: {
+                    'onReady': onPlayerReady
                 }
             });
         }
 
-        // Logic Web Interaktif
+        function onPlayerReady(event) {
+            // Trik jitu: Lagu akan diputar segera setelah dia menyentuh layar pertama kali (Tap dimanapun)
+            document.body.addEventListener('touchstart', playMusicOnce, { once: true });
+            document.body.addEventListener('mousedown', playMusicOnce, { once: true });
+        }
+
+        function playMusicOnce() {
+            if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
+                player.unMute();
+                player.playVideo();
+                isMusicPlaying = true;
+            }
+        }
+
+        // Logic Jam Real-Time
+        function updateClock() {
+            const now = new Date();
+            
+            // Format Jam (HH:MM)
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('time-display').textContent = hours + ':' + minutes;
+
+            // Format Tanggal (English style seperti gambar referensi)
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            const dayName = days[now.getDay()];
+            const day = now.getDate();
+            const monthName = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById('date-display').textContent = `${dayName}, ${day} ${monthName} ${year}`;
+        }
+        
+        // Update jam setiap 1 detik
+        setInterval(updateClock, 1000);
+        updateClock(); // Panggil langsung agar tidak kosong di awal
+
+        // Logic Web Interaktif Slider & Layar
         const slider = document.getElementById('forgiveSlider');
         const percentVal = document.getElementById('percent-val');
         const statusText = document.getElementById('status-text');
@@ -323,12 +390,6 @@
         const screen2 = document.getElementById('screen2');
 
         slider.addEventListener('input', function() {
-            // Mainkan musik Youtube saat slider digeser pertama kali
-            if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
-                player.playVideo();
-                isMusicPlaying = true;
-            }
-
             let val = this.value;
             percentVal.textContent = val + '%';
 
