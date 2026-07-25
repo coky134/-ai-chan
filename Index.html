@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+        body {
+            background-color: #ffe0e6;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #8b1e41;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .emoji-large {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            margin: 30px 0;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            background: #d6336c;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(214, 51, 108, 0.5);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #ffb3c6;
+            border-radius: 5px;
+        }
+
+        .percentage {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c9184a;
+            margin: 15px 0;
+        }
+
+        /* Button */
+        button {
+            background-color: #ffb3c6;
+            border: none;
+            color: #8b1e41;
+            padding: 10px 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #ff8fab;
+        }
+
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-wa:hover {
+            background-color: #128C7E;
+        }
+
+        /* Gifts */
+        .gifts {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+
+        .gift {
+            font-size: 60px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .gift:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Bouquet Section */
+        .bouquet-container {
+            position: relative;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 340px; /* Sedikit dilebarkan ruangnya */
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bouquet {
+            font-size: 100px;
+            z-index: 1;
+        }
+
+        .bubble {
+            background: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            position: absolute;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: #c9184a;
+            border: 1px solid #ffb3c6;
+            z-index: 2;
+            width: max-content; /* PERBAIKAN: Lebar fleksibel mengikuti teks agar tidak turun ke bawah */
+            text-align: center;
+        }
+
+        /* Perbaikan Posisi Gelembung */
+        .b1 { top: 0; left: 5px; }
+        .b2 { top: 30%; right: 5px; }
+        .b3 { bottom: 30%; left: 5px; }
+        .b4 { bottom: 0; right: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Screen 1: Meteran Maaf -->
+        <div id="screen1" class="screen active">
+            <div class="emoji-large" id="cat-emoji">😿</div>
+            <h1 id="status-text">Cuma segini maafnya?</h1>
+            <div class="percentage" id="percent-val">0%</div>
+            
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="0" id="forgiveSlider">
+            </div>
+            <p style="font-size: 14px;">Geser sampai penuh kalau kamu beneran maafin aku...</p>
+        </div>
+
+        <!-- Screen 2: Berhasil Maafin -->
+        <div id="screen2" class="screen">
+            <div class="emoji-large">😸</div>
+            <h1>Yeay! Makasih udah maafin aku!</h1>
+            <p>Terimakasih yah sayang kuuu😘😘🐥</p>
+            <button onclick="nextScreen(3)">Lanjut &rarr;</button>
+        </div>
+
+        <!-- Screen 3: Kotak Hadiah -->
+        <div id="screen3" class="screen">
+            <h1>愛ちゃん💖 lulus tes kesabaran!</h1>
+            <p>Makasih udah sabar ngadepin aku. Pilih satu kejutan buat kamu:</p>
+            <div class="gifts">
+                <div class="gift" onclick="nextScreen(4)">🎁</div>
+                <div class="gift" onclick="nextScreen(4)">🎁</div>
+                <div class="gift" onclick="nextScreen(4)">🎁</div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Buket Bunga & Tombol WA -->
+        <div id="screen4" class="screen">
+            <h1>Buket Minta Maafku</h1>
+            
+            <div class="bouquet-container">
+                <div class="bubble b1">Love bocill ini💝</div>
+                <div class="bubble b2">Kawaiine😘</div>
+                <div class="bubble b3">Minta Maaf yah 愛ちゃん😘</div>
+                <div class="bubble b4">Love you always!</div>
+                <div class="bouquet">💐</div>
+            </div>
+            
+            <p style="font-size: 14px; margin-bottom: 5px;">Kasih tau aku kalau kamu udah maafin aku ya 👇</p>
+            <!-- Tombol Kirim WA -->
+            <button class="btn-wa" onclick="kirimKeWA()">Kirim ke WhatsApp</button>
+            <br>
+            <!-- Tombol Ulangi -->
+            <button onclick="location.reload()" style="background: transparent; color: #d6336c; box-shadow: none; font-size: 14px; text-decoration: underline;">Ulangi dari awal</button>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('forgiveSlider');
+        const percentVal = document.getElementById('percent-val');
+        const statusText = document.getElementById('status-text');
+        const catEmoji = document.getElementById('cat-emoji');
+        const screen1 = document.getElementById('screen1');
+        const screen2 = document.getElementById('screen2');
+
+        // Logic untuk slider minta maaf
+        slider.addEventListener('input', function() {
+            let val = this.value;
+            percentVal.textContent = val + '%';
+
+            if (val < 50) {
+                catEmoji.textContent = '😿';
+                statusText.textContent = 'Cuma segini maafnya?';
+            } else if (val < 100) {
+                catEmoji.textContent = '🥺';
+                statusText.textContent = 'Dikit lagi dong maafinnya...';
+            } else {
+                // Jika 100%, pindah ke halaman berikutnya setelah delay kecil
+                setTimeout(() => {
+                    screen1.classList.remove('active');
+                    screen2.classList.add('active');
+                }, 300);
+            }
+        });
+
+        // Fungsi navigasi antar layar
+        function nextScreen(screenNumber) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen' + screenNumber).classList.add('active');
+        }
+
+        // Fungsi Kirim ke WA
+        function kirimKeWA() {
+            // Nomor WhatsApp tujuan
+            const nomorWA = "6287836023594"; 
+            
+            // Pesan otomatis yang akan terkirim
+            const pesan = "Hai! Aku udah mainin webnya, aku udah terima kado sama bunganya. Aku udah maafin kamu 100% kok! 💐💖";
+            
+            // Format URL WA
+            const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+            
+            // Buka tab baru menuju WhatsApp
+            window.open(urlWA, "_blank");
+        }
+    </script>
+</body>
+</html>
