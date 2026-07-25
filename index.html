@@ -15,7 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Diubah agar bisa scroll jika konten lebih panjang dari layar */
+            min-height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
             color: #8b1e41;
@@ -139,7 +139,7 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* --- STYLES UNTUK KOLASE HATI --- */
+        /* STYLES KOLASE HATI */
         .heart-collage-container {
             position: relative;
             width: 320px;
@@ -161,7 +161,6 @@
             z-index: 20 !important;
         }
 
-        /* Pengaturan posisi agar membentuk pola hati */
         .c-center { width: 130px; height: 170px; top: 70px; left: 95px; z-index: 10; }
         .c-t-l   { width: 50px; height: 50px; top: 30px; left: 40px; transform: rotate(-10deg); }
         .c-t-m-l { width: 65px; height: 65px; top: 10px; left: 90px; transform: rotate(-5deg); z-index: 5; }
@@ -172,7 +171,6 @@
         .c-b-l   { width: 60px; height: 60px; top: 200px; left: 50px; transform: rotate(-15deg); }
         .c-b-r   { width: 60px; height: 60px; top: 200px; left: 210px; transform: rotate(15deg); }
         .c-b-m   { width: 75px; height: 75px; top: 245px; left: 122px; z-index: 8; }
-
 
         /* Bouquet Section */
         .bouquet-container {
@@ -214,6 +212,9 @@
 </head>
 <body>
 
+    <!-- Wadah tersembunyi untuk YouTube Audio -->
+    <div id="ytplayer" style="position: absolute; top: -9999px; left: -9999px;"></div>
+
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
         <div id="screen1" class="screen active">
@@ -230,7 +231,8 @@
         <!-- Screen 2: Berhasil Maafin -->
         <div id="screen2" class="screen">
             <div class="emoji-large">😸</div>
-            <h1>あいちゃん😘🐥 Buka dong sayang Blokirnya😘</h1>
+            <h1>あいちゃん😘🐥</h1>
+            <h1>Hai あいちゃん🥰 Terimakasih yaa sudah Buka Blokirnya😘</h1>
             <p>Terimakasih yah sayang kuuu😘😘🐥</p>
             <button onclick="nextScreen(3)">Lanjut &rarr;</button>
         </div>
@@ -246,7 +248,7 @@
             </div>
         </div>
 
-        <!-- Screen 4: KOLASE FOTO HATI (Baru ditambahkan) -->
+        <!-- Screen 4: KOLASE FOTO HATI -->
         <div id="screen4" class="screen">
             <h1>Kenangan Kita 💕</h1>
             <p style="font-size: 14px; margin-bottom: 0;">Walau kadang ngeselin, tapi kan banyak manisnya...</p>
@@ -270,7 +272,7 @@
             <button onclick="nextScreen(5)">Ada satu lagi buat kamu &rarr;</button>
         </div>
 
-        <!-- Screen 5: Buket Bunga & Tombol WA (Diubah menjadi Screen 5) -->
+        <!-- Screen 5: Buket Bunga & Tombol WA -->
         <div id="screen5" class="screen">
             <h1>Buket Minta Maafku</h1>
             
@@ -289,7 +291,29 @@
         </div>
     </div>
 
+    <!-- Script YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        // Setup YouTube Audio
+        let player;
+        let isMusicPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                height: '0',
+                width: '0',
+                videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'loop': 1,
+                    'playlist': 'f5-IY_Ja1RM' // Playlist harus diisi ID yang sama agar bisa loop
+                }
+            });
+        }
+
+        // Logic Web Interaktif
         const slider = document.getElementById('forgiveSlider');
         const percentVal = document.getElementById('percent-val');
         const statusText = document.getElementById('status-text');
@@ -297,8 +321,13 @@
         const screen1 = document.getElementById('screen1');
         const screen2 = document.getElementById('screen2');
 
-        // Logic untuk slider minta maaf
         slider.addEventListener('input', function() {
+            // Mainkan musik Youtube saat slider digeser pertama kali
+            if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
+                player.playVideo();
+                isMusicPlaying = true;
+            }
+
             let val = this.value;
             percentVal.textContent = val + '%';
 
