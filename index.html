@@ -122,6 +122,18 @@
             background-color: #128C7E;
         }
 
+        .btn-music {
+            background-color: #ffb3d9;
+            color: #5a1c3d;
+            font-size: 14px;
+            padding: 8px 20px;
+            margin-bottom: 15px;
+        }
+
+        .btn-music:hover {
+            background-color: #ff80bf;
+        }
+
         /* Gifts */
         .gifts {
             display: flex;
@@ -194,17 +206,17 @@
         /* Bouquet Section */
         .bouquet-container {
             position: relative;
-            margin: 30px auto;
+            margin: 20px auto;
             width: 100%;
             max-width: 340px;
-            height: 250px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .bouquet {
-            font-size: 100px;
+            font-size: 90px;
             z-index: 1;
         }
 
@@ -231,8 +243,8 @@
         textarea.catatan-box {
             width: 100%;
             max-width: 320px;
-            padding: 12px;
-            margin: 10px 0 15px 0;
+            padding: 10px;
+            margin: 5px 0 10px 0;
             border-radius: 10px;
             border: 2px solid #b3d4ff;
             background-color: rgba(255, 255, 255, 0.8);
@@ -243,24 +255,23 @@
             outline: none;
             box-sizing: border-box;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        textarea.catatan-box:focus {
-            border-color: #5a9bd4;
-            background-color: #ffffff;
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Wadah untuk YouTube Audio (Ukuran disembunyikan agar tidak diblokir browser) -->
-    <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 200px; height: 200px; opacity: 0; pointer-events: none; z-index: -999;"></div>
+    <!-- PEMUTAR AUDIO LOKAL DARI REPOSITORY -->
+    <audio id="bg-music" loop>
+        <source src="JVKE-her.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
         <div id="screen1" class="screen active">
+            <!-- Tombol Putar Musik Manual -->
+            <button class="btn-music" onclick="toggleMusic()">🎵 Putar Musik Dulu Yuk</button>
+
             <div class="emoji-large" id="cat-emoji">😿</div>
             <h1 id="status-text">Cuma segini maafnya?</h1>
             <div class="percentage" id="percent-val">0%</div>
@@ -293,22 +304,20 @@
         <!-- Screen 4: KOLASE FOTO HATI + JAM REALTIME & TANGGAL STATIS -->
         <div id="screen4" class="screen">
             <h1>Kenangan Kita 💕</h1>
-            <p style="font-size: 14px; margin-bottom: 20px;">Hai sayang Kuu, Ini adalah kenangan kita yang sudah Kita Buat selama Ini, Masih banyak kenangan kita lagi yang belum ditampilkan, Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini, Mas Minta maaf jika 2 bulan Ini mas banyak melakukan kesalahan sama aichan, Bikin aichan cemburu, bikin aichan kesel, sampe Blokir mas, mas Minta maaf yah sayang😘, Mas Harap Bisa terus berlanjut sampai Kita menikah nanti😘 Dan teruss membuat kenangan yang berharga di masa depan nanti, love You Moree sayang Kuuu💐.</p>
+            <p style="font-size: 13px; margin-bottom: 15px;">Hai sayang Kuu, Ini adalah kenangan kita yang sudah Kita Buat selama Ini, Masih banyak kenangan kita lagi yang belum ditampilkan, Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini, Mas Minta maaf jika 2 bulan Ini mas banyak melakukan kesalahan sama aichan, Bikin aichan cemburu, bikin aichan kesel, sampe Blokir mas, mas Minta maaf yah sayang😘, Mas Harap Bisa terus berlanjut sampai Kita menikah nanti😘 Dan teruss membuat kenangan yang berharga di masa depan nanti, love You Moree sayang Kuuu💐.</p>
            
-            <div class="clock-container">
-                <div id="time-display">00:00</div>
-                <div id="date-display">Sunday, 10 February 2019</div> 
+            <div class="clock-container" style="margin: 5px auto 15px auto;">
+                <div id="time-display" style="font-size: 50px;">00:00</div>
+                <div id="date-display" style="font-size: 15px;">Sunday, 10 February 2019</div> 
             </div>
 
             <div class="heart-collage-container">
-                <!-- FOTO DIAMBIL DARI REPOSITORY -->
                 <img class="c-img c-t-l" src="586478-Ngonten_Box_.jpg" alt="Kenangan 1">
                 <img class="c-img c-t-m-l" src="IMG-20260614-WA0180.jpg" alt="Kenangan 2">
                 <img class="c-img c-t-m-r" src="IMG-20260614-WA0177.jpg" alt="Kenangan 3">
                 <img class="c-img c-t-r" src="586495-Ngonten_Box.jpg" alt="Kenangan 4">
                 
                 <img class="c-img c-m-l" src="IMG-20260721-WA0537.jpg" alt="Kenangan 5">
-                <!-- FOTO UTAMA DI TENGAH -->
                 <img class="c-img c-center" src="PXL_20260616_221219338.jpg" alt="Kenangan Utama">
                 <img class="c-img c-m-r" src="IMG-20260702-WA0016.jpg" alt="Kenangan 6">
                 
@@ -331,11 +340,14 @@
                 <div class="bubble b4">Love you always!</div>
                 <div class="bouquet">💐</div>
             </div>
+
+            <!-- Tombol Musik Manual di Layar Akhir -->
+            <button class="btn-music" onclick="toggleMusic()" id="music-btn-2">🎵 Putar Musik Romantis</button>
             
-            <p style="font-size: 14px; margin-bottom: 5px;">Tulis balasan kamu buat mas di sini ya 👇</p>
+            <p style="font-size: 13px; margin: 5px 0 2px 0;">Tulis balasan kamu buat mas di sini ya 👇</p>
             
             <!-- KOTAK CATATAN -->
-            <textarea id="pesanAichan" class="catatan-box" rows="3" placeholder="Ketik sesuatu buat mas..."></textarea>
+            <textarea id="pesanAichan" class="catatan-box" rows="2" placeholder="Ketik sesuatu buat mas..."></textarea>
             
             <button class="btn-wa" onclick="kirimKeWA()">Kirim ke WhatsApp</button>
             <br>
@@ -343,51 +355,33 @@
         </div>
     </div>
 
-    <!-- Script YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Setup YouTube Audio
-        let player;
-        let isMusicPlaying = false;
+        // FUNGSI PEMUTAR MUSIK MANUAL
+        const bgMusic = document.getElementById('bg-music');
+        let isPlaying = false;
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('ytplayer', {
-                height: '200',
-                width: '200',
-                videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'disablekb': 1,
-                    'playsinline': 1, 
-                    'loop': 1,
-                    'playlist': 'f5-IY_Ja1RM' 
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Pasang sensor di seluruh layar, begitu dia ketuk layar pertama kali, musik nyala
-            document.body.addEventListener('touchstart', playMusicOnce, { once: true });
-            document.body.addEventListener('click', playMusicOnce, { once: true });
-            document.body.addEventListener('mousedown', playMusicOnce, { once: true });
-        }
-
-        function playMusicOnce() {
-            if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
-                player.unMute(); // pastikan tidak mute
-                player.playVideo();
-                isMusicPlaying = true;
+        function toggleMusic() {
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    document.querySelectorAll('.btn-music').forEach(btn => {
+                        btn.textContent = "⏸ Jeda Musik";
+                    });
+                }).catch(e => {
+                    console.log("Gagal memutar audio:", e);
+                });
+            } else {
+                bgMusic.pause();
+                isPlaying = false;
+                document.querySelectorAll('.btn-music').forEach(btn => {
+                    btn.textContent = "🎵 Putar Musik Romantis";
+                });
             }
         }
 
         // Logic Jam Real-Time
         function updateClock() {
             const now = new Date();
-            
             let hours = now.getHours();
             let minutes = now.getMinutes();
             hours = hours < 10 ? '0' + hours : hours;
@@ -398,7 +392,6 @@
         setInterval(updateClock, 1000);
         updateClock(); 
 
-
         // Logic Web Interaktif Slider
         const slider = document.getElementById('forgiveSlider');
         const percentVal = document.getElementById('percent-val');
@@ -408,9 +401,6 @@
         const screen2 = document.getElementById('screen2');
 
         slider.addEventListener('input', function() {
-            // Trigger darurat jika sensor layar pertama gagal
-            playMusicOnce();
-
             let val = this.value;
             percentVal.textContent = val + '%';
 
@@ -441,7 +431,6 @@
             
             let pesan = "Hai Mas, あいちゃん🐥 udah terima kado sama bunganya. Aku udah maafin kamu 100% kok! 💖💐";
             
-            // Jika ada isinya, tambahkan ke WA
             if (catatan.trim() !== "") {
                 pesan += "\n\nPesan dari あいちゃん:\n\"" + catatan + "\"";
             }
