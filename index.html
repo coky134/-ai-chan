@@ -122,26 +122,6 @@
             background-color: #128C7E;
         }
 
-        .btn-music {
-            background-color: #ffb3d9;
-            color: #5a1c3d;
-            font-size: 15px;
-            padding: 12px 25px;
-            margin-bottom: 20px;
-            border-radius: 30px;
-            animation: pulse 2s infinite;
-        }
-
-        .btn-music:hover {
-            background-color: #ff80bf;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
         /* Gifts */
         .gifts {
             display: flex;
@@ -269,19 +249,15 @@
 </head>
 <body>
 
-    <!-- PEMUTAR AUDIO LOKAL DARI REPOSITORY -->
-    <!-- Memanggil file Ini-Abadi.mp3 -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="Ini-Abadi.mp3" type="audio/mpeg">
+    <!-- AUDIO OTOMATIS MENGGUNAKAN LINK RAW GITHUB -->
+    <audio id="bg-music" autoplay loop preload="auto">
+        <source src="https://raw.githubusercontent.com/coky134/-ai-chan/refs/heads/main/Ini-Abadi.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
         <div id="screen1" class="screen active">
             
-            <!-- TOMBOL PUTAR MUSIK DULU YUK -->
-            <button class="btn-music" onclick="toggleMusic()">🎵 Putar Musik Dulu Yuk</button>
-
             <div class="emoji-large" id="cat-emoji">😿</div>
             <h1 id="status-text">Cuma segini maafnya?</h1>
             <div class="percentage" id="percent-val">0%</div>
@@ -311,7 +287,7 @@
             </div>
         </div>
 
-        <!-- Screen 4: KOLASE FOTO HATI + JAM REALTIME & TANGGAL STATIS -->
+        <!-- Screen 4: KOLASE HATI + JAM REALTIME & TANGGAL STATIS -->
         <div id="screen4" class="screen">
             <h1>Kenangan Kita 💕</h1>
             <p style="font-size: 13px; margin-bottom: 15px;">Hai sayang Kuu, Ini adalah kenangan kita yang sudah Kita Buat selama Ini, Masih banyak kenangan kita lagi yang belum ditampilkan, Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini, Mas Minta maaf jika 2 bulan Ini mas banyak melakukan kesalahan sama aichan, Bikin aichan cemburu, bikin aichan kesel, sampe Blokir mas, mas Minta maaf yah sayang😘, Mas Harap Bisa terus berlanjut sampai Kita menikah nanti😘 Dan teruss membuat kenangan yang berharga di masa depan nanti, love You Moree sayang Kuuu💐.</p>
@@ -363,37 +339,26 @@
     </div>
 
     <script>
-        // FUNGSI PEMUTAR MUSIK MANUAL TERBARU
+        // SCRIPT PAKSA PUTAR AUDIO OTOMATIS SAAT ADA SENTUHAN PERTAMA DI LAYAR
         const bgMusic = document.getElementById('bg-music');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (!isPlaying) {
-                // Memutar musik
-                let playPromise = bgMusic.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Jika berhasil diputar
-                        isPlaying = true;
-                        document.querySelectorAll('.btn-music').forEach(btn => {
-                            btn.textContent = "⏸ Jeda Musik";
-                        });
-                    }).catch(error => {
-                        // Jika masih diblokir browser
-                        console.log("Autoplay dicegah:", error);
-                        alert("Gagal memutar lagu. Coba muat ulang halamannya ya!");
-                    });
-                }
-            } else {
-                // Memberhentikan musik
-                bgMusic.pause();
-                isPlaying = false;
-                document.querySelectorAll('.btn-music').forEach(btn => {
-                    btn.textContent = "🎵 Putar Musik Dulu Yuk";
-                });
-            }
+        
+        function forcePlayMusic() {
+            bgMusic.play().then(() => {
+                // Jika berhasil, Hapus listener agar tidak berjalan terus-menerus
+                window.removeEventListener('click', forcePlayMusic);
+                window.removeEventListener('touchstart', forcePlayMusic);
+            }).catch(error => {
+                console.log("Menunggu interaksi pengguna untuk memutar audio...");
+            });
         }
+
+        window.addEventListener('click', forcePlayMusic);
+        window.addEventListener('touchstart', forcePlayMusic);
+
+        // Coba langsung putar saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            bgMusic.play().catch(() => {});
+        });
 
         // Logic Jam Real-Time
         function updateClock() {
