@@ -257,7 +257,6 @@
 
     <!-- PEMUTAR AUDIO DARI REPOSITORY LOKAL -->
     <audio id="bg-music" loop>
-        <!-- Nama file sudah disesuaikan dengan yang kamu upload: JVKE-her.mp3 -->
         <source src="JVKE-her.mp3" type="audio/mpeg">
     </audio>
 
@@ -304,19 +303,20 @@
             </div>
 
             <div class="heart-collage-container">
-                <!-- Ganti nama file gambar di bawah ini jika kamu sudah mengunggah fotonya ke GitHub -->
-                <img class="c-img c-t-l" src="https://placehold.co/100x100/b3d4ff/1c3d5a?text=Foto+1" alt="Kenangan 1">
-                <img class="c-img c-t-m-l" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+2" alt="Kenangan 2">
-                <img class="c-img c-t-m-r" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+3" alt="Kenangan 3">
-                <img class="c-img c-t-r" src="https://placehold.co/100x100/b3d4ff/1c3d5a?text=Foto+4" alt="Kenangan 4">
+                <!-- FOTO DIAMBIL DARI REPOSITORY -->
+                <img class="c-img c-t-l" src="586478-Ngonten_Box_.jpg" alt="Kenangan 1">
+                <img class="c-img c-t-m-l" src="586495-Ngonten_Box.jpg" alt="Kenangan 2">
+                <img class="c-img c-t-m-r" src="IMG-20260614-WA0177.jpg" alt="Kenangan 3">
+                <img class="c-img c-t-r" src="IMG-20260614-WA0180.jpg" alt="Kenangan 4">
                 
-                <img class="c-img c-m-l" src="https://placehold.co/120x150/b3d4ff/1c3d5a?text=Foto+5" alt="Kenangan 5">
-                <img class="c-img c-center" src="https://placehold.co/300x400/b3d4ff/1c3d5a?text=FOTO+UTAMA" alt="Kenangan Utama">
-                <img class="c-img c-m-r" src="https://placehold.co/120x150/b3d4ff/1c3d5a?text=Foto+6" alt="Kenangan 6">
+                <img class="c-img c-m-l" src="IMG-20260627-WA0091.jpg" alt="Kenangan 5">
+                <!-- FOTO UTAMA DI TENGAH -->
+                <img class="c-img c-center" src="Ciremai-hp.jpg" alt="Kenangan Utama">
+                <img class="c-img c-m-r" src="IMG-20260702-WA0016.jpg" alt="Kenangan 6">
                 
-                <img class="c-img c-b-l" src="https://placehold.co/120x120/b3d4ff/1c3d5a?text=Foto+7" alt="Kenangan 7">
-                <img class="c-img c-b-r" src="https://placehold.co/120x120/b3d4ff/1c3d5a?text=Foto+8" alt="Kenangan 8">
-                <img class="c-img c-b-m" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+9" alt="Kenangan 9">
+                <img class="c-img c-b-l" src="IMG-20260703-WA0113.jpg" alt="Kenangan 7">
+                <img class="c-img c-b-r" src="IMG-20260704-WA0176.jpg" alt="Kenangan 8">
+                <img class="c-img c-b-m" src="IMG-20260718-WA0351.jpg" alt="Kenangan 9">
             </div>
 
             <button onclick="nextScreen(5)">Ada satu lagi buat kamu &rarr;</button>
@@ -336,7 +336,7 @@
             
             <p style="font-size: 14px; margin-bottom: 5px;">Tulis balasan kamu buat mas di sini ya 👇</p>
             
-            <!-- KOTAK CATATAN BARU -->
+            <!-- KOTAK CATATAN -->
             <textarea id="pesanAichan" class="catatan-box" rows="3" placeholder="Ketik sesuatu buat mas..."></textarea>
             
             <button class="btn-wa" onclick="kirimKeWA()">Kirim ke WhatsApp</button>
@@ -416,7 +416,7 @@
             document.getElementById('screen' + screenNumber).classList.add('active');
         }
 
-        // FUNGSI WA YANG DIPERBARUI (DENGAN CATATAN)
+        // FUNGSI WA 
         function kirimKeWA() {
             const nomorWA = "6287836023594"; 
             const catatan = document.getElementById('pesanAichan').value; 
