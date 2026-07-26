@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap');
 
         body {
-            background-color: #e0f4ff; /* Biru pastel untuk background */
+            background-color: #e0f4ff; 
             font-family: 'Quicksand', sans-serif;
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
-            color: #1c3d5a; /* Biru dongker untuk teks agar mudah dibaca */
+            color: #1c3d5a; 
             text-align: center;
         }
 
@@ -70,7 +70,7 @@
             height: 25px;
             width: 25px;
             border-radius: 50%;
-            background: #5a9bd4; /* Biru kuat untuk tombol slider */
+            background: #5a9bd4; 
             cursor: pointer;
             margin-top: -10px;
             box-shadow: 0 0 10px rgba(90, 155, 212, 0.5);
@@ -80,20 +80,20 @@
             width: 100%;
             height: 8px;
             cursor: pointer;
-            background: #b3d4ff; /* Biru medium untuk track slider */
+            background: #b3d4ff; 
             border-radius: 5px;
         }
 
         .percentage {
             font-size: 28px;
             font-weight: bold;
-            color: #185ac9; /* Biru untuk persentase */
+            color: #185ac9; 
             margin: 15px 0;
         }
 
         /* Button */
         button {
-            background-color: #b3d4ff; /* Biru medium tombol */
+            background-color: #b3d4ff; 
             border: none;
             color: #1c3d5a;
             padding: 10px 30px;
@@ -110,7 +110,7 @@
         }
 
         button:hover {
-            background-color: #8faeff; /* Biru hover */
+            background-color: #8faeff; 
         }
 
         .btn-wa {
@@ -139,10 +139,10 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* --- CLOCK STYLES --- */
+        /* CLOCK STYLES */
         .clock-container {
             margin: 10px auto 25px auto;
-            color: #729bce; /* Biru soft jam dari gambar referensi */
+            color: #729bce; 
         }
 
         #time-display {
@@ -215,8 +215,8 @@
             font-size: 11px;
             position: absolute;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #185ac9; /* Teks gelembung biru */
-            border: 1px solid #b3d4ff; /* Border gelembung biru */
+            color: #185ac9; 
+            border: 1px solid #b3d4ff; 
             z-index: 2;
             width: max-content;
             text-align: center;
@@ -227,12 +227,36 @@
         .b3 { bottom: 30%; left: 5px; }
         .b4 { bottom: 0; right: 5px; }
 
+        /* STYLE KOTAK CATATAN */
+        textarea.catatan-box {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px;
+            margin: 10px 0 15px 0;
+            border-radius: 10px;
+            border: 2px solid #b3d4ff;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #1c3d5a;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        textarea.catatan-box:focus {
+            border-color: #5a9bd4;
+            background-color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
 
     <!-- Wadah untuk YouTube Audio -->
-    <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
+    <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 200px; height: 200px; opacity: 0; pointer-events: none; z-index: -999;"></div>
 
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
@@ -266,19 +290,17 @@
             </div>
         </div>
 
-        <!-- Screen 4: KOLASE FOTO HATI + JAM REALTIME -->
+        <!-- Screen 4: KOLASE FOTO HATI + JAM REALTIME & TANGGAL STATIS -->
         <div id="screen4" class="screen">
             <h1>Kenangan Kita 💕</h1>
             <p style="font-size: 14px; margin-bottom: 20px;">Hai sayang Kuu, Ini adalah kenangan kita yang sudah Kita Buat selama Ini, Masih banyak kenangan kita lagi yang belum ditampilkan, Ngga kerasa Yahh Kita Sudah sampai di Bulan ke 2 Ini, Mas Minta maaf jika 2 bulan Ini mas banyak melakukan kesalahan sama aichan, Bikin aichan cemburu, bikin aichan kesel, sampe Blokir mas, mas Minta maaf yah sayang😘, Mas Harap Bisa terus berlanjut sampai Kita menikah nanti😘 Dan teruss membuat kenangan yang berharga di masa depan nanti, love You Moree sayang Kuuu💐.</p>
            
-            <!-- JAM & TANGGAL REALTIME -->
             <div class="clock-container">
                 <div id="time-display">00:00</div>
-                <div id="date-display">Day, 00 Month 0000</div>
+                <div id="date-display">Sunday, 10 February 2019</div> 
             </div>
 
             <div class="heart-collage-container">
-                <!-- URL placeholder juga sudah diubah senada ke warna biru -->
                 <img class="c-img c-t-l" src="https://placehold.co/100x100/b3d4ff/1c3d5a?text=Foto+1" alt="Kenangan 1">
                 <img class="c-img c-t-m-l" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+2" alt="Kenangan 2">
                 <img class="c-img c-t-m-r" src="https://placehold.co/150x150/b3d4ff/1c3d5a?text=Foto+3" alt="Kenangan 3">
@@ -296,7 +318,7 @@
             <button onclick="nextScreen(5)">Ada satu lagi buat kamu &rarr;</button>
         </div>
 
-        <!-- Screen 5: Buket Bunga & Tombol WA -->
+        <!-- Screen 5: Buket Bunga, Kotak Pesan & Tombol WA -->
         <div id="screen5" class="screen">
             <h1>Buket Minta Maafku</h1>
             
@@ -308,10 +330,13 @@
                 <div class="bouquet">💐</div>
             </div>
             
-            <p style="font-size: 14px; margin-bottom: 5px;">Kasih tau aku kalau kamu udah maafin aku ya 👇</p>
+            <p style="font-size: 14px; margin-bottom: 5px;">Tulis balasan kamu buat mas di sini ya 👇</p>
+            
+            <!-- KOTAK CATATAN BARU -->
+            <textarea id="pesanAichan" class="catatan-box" rows="3" placeholder="Ketik sesuatu buat mas..."></textarea>
+            
             <button class="btn-wa" onclick="kirimKeWA()">Kirim ke WhatsApp</button>
             <br>
-            <!-- Tombol ulangi diwarnai biru -->
             <button onclick="location.reload()" style="background: transparent; color: #5a9bd4; box-shadow: none; font-size: 14px; text-decoration: underline;">Ulangi dari awal</button>
         </div>
     </div>
@@ -325,8 +350,8 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('ytplayer', {
-                height: '1',
-                width: '1',
+                height: '200',
+                width: '200',
                 videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
                 playerVars: {
                     'autoplay': 0,
@@ -344,7 +369,7 @@
 
         function onPlayerReady(event) {
             document.body.addEventListener('touchstart', playMusicOnce, { once: true });
-            document.body.addEventListener('mousedown', playMusicOnce, { once: true });
+            document.body.addEventListener('click', playMusicOnce, { once: true });
         }
 
         function playMusicOnce() {
@@ -364,22 +389,12 @@
             hours = hours < 10 ? '0' + hours : hours;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             document.getElementById('time-display').textContent = hours + ':' + minutes;
-
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            
-            const dayName = days[now.getDay()];
-            const day = now.getDate();
-            const monthName = months[now.getMonth()];
-            const year = now.getFullYear();
-
-            document.getElementById('date-display').textContent = `${dayName}, ${day} ${monthName} ${year}`;
         }
         
         setInterval(updateClock, 1000);
         updateClock(); 
 
-        // Logic Web Interaktif Slider & Layar
+        // Logic Web Interaktif
         const slider = document.getElementById('forgiveSlider');
         const percentVal = document.getElementById('percent-val');
         const statusText = document.getElementById('status-text');
@@ -388,6 +403,8 @@
         const screen2 = document.getElementById('screen2');
 
         slider.addEventListener('input', function() {
+            playMusicOnce();
+
             let val = this.value;
             percentVal.textContent = val + '%';
 
@@ -410,9 +427,18 @@
             document.getElementById('screen' + screenNumber).classList.add('active');
         }
 
+        // FUNGSI WA YANG DIPERBARUI
         function kirimKeWA() {
             const nomorWA = "6287836023594"; 
-            const pesan = "Hai Mas, あいちゃん🐥 udah terima kado sama bunganya. Aku udah maafin kamu 100% kok! 💖💐";
+            const catatan = document.getElementById('pesanAichan').value; // Mengambil teks dari kotak
+            
+            let pesan = "Hai Mas, あいちゃん🐥 udah terima kado sama bunganya. Aku udah maafin kamu 100% kok! 💖💐";
+            
+            // Jika Aichan mengisi kotak catatan, tambahkan pesan tersebut ke WA
+            if (catatan.trim() !== "") {
+                pesan += "\n\nPesan dari あいちゃん:\n\"" + catatan + "\"";
+            }
+            
             const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
             window.open(urlWA, "_blank");
         }
