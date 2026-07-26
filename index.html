@@ -255,10 +255,8 @@
 </head>
 <body>
 
-    <!-- PEMUTAR AUDIO DARI REPOSITORY LOKAL -->
-    <audio id="bg-music" loop>
-        <source src="JVKE-her.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Wadah untuk YouTube Audio (Ukuran disembunyikan agar tidak diblokir browser) -->
+    <div id="ytplayer" style="position: absolute; top: 0; left: 0; width: 200px; height: 200px; opacity: 0; pointer-events: none; z-index: -999;"></div>
 
     <div class="container">
         <!-- Screen 1: Meteran Maaf -->
@@ -345,26 +343,46 @@
         </div>
     </div>
 
+    <!-- Script YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // LOGIC AUDIO REPOSITORY LOKAL
-        const bgMusic = document.getElementById('bg-music');
+        // Setup YouTube Audio
+        let player;
         let isMusicPlaying = false;
 
-        function playMusicOnce() {
-            if (!isMusicPlaying) {
-                // Mainkan lagu
-                bgMusic.play().then(() => {
-                    isMusicPlaying = true;
-                }).catch((error) => {
-                    console.log("Menunggu interaksi layar...", error);
-                });
-            }
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                height: '200',
+                width: '200',
+                videoId: 'f5-IY_Ja1RM', // ID Video Kaleb J - It's Only Me
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'playsinline': 1, 
+                    'loop': 1,
+                    'playlist': 'f5-IY_Ja1RM' 
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
         }
 
-        // Pasang sensor sentuh di seluruh layar (Begitu diklik/disentuh, lagu langsung main)
-        document.body.addEventListener('touchstart', playMusicOnce, { once: true });
-        document.body.addEventListener('click', playMusicOnce, { once: true });
+        function onPlayerReady(event) {
+            // Pasang sensor di seluruh layar, begitu dia ketuk layar pertama kali, musik nyala
+            document.body.addEventListener('touchstart', playMusicOnce, { once: true });
+            document.body.addEventListener('click', playMusicOnce, { once: true });
+            document.body.addEventListener('mousedown', playMusicOnce, { once: true });
+        }
 
+        function playMusicOnce() {
+            if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
+                player.unMute(); // pastikan tidak mute
+                player.playVideo();
+                isMusicPlaying = true;
+            }
+        }
 
         // Logic Jam Real-Time
         function updateClock() {
